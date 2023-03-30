@@ -37,7 +37,7 @@ const Home = () => {
     //   ]);
     // }
 
-    fetch('https://bytivebackend-evt4.onrender.com//getUserList', {
+    fetch('https://bytivebackend-evt4.onrender.com/getUserList', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
