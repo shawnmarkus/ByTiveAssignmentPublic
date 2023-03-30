@@ -13,7 +13,6 @@ const FormComp = () => {
 
       <Text style={Styles.label}>Email</Text>
       <TextInput
-        required
         placeholder="enter email"
         placeholderTextColor="#ababab"
         style={Styles.inputBox}
@@ -92,7 +91,7 @@ const Styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     padding: 10,
-    height: 32,
+    height: 40,
     color: 'black',
   },
 

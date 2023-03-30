@@ -173,6 +173,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'flex-end',
     right: 0,
   },
+
   button: {
     borderRadius: 10,
     padding: 10,
@@ -182,7 +183,7 @@ const Styles = StyleSheet.create({
   buttonClose: {
     backgroundColor: '#2196F3',
     marginLeft: 10,
-    width: 70,
+    width: 95,
   },
 
   textStyle: {
