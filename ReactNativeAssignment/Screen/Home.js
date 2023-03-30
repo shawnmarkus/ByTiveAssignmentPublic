@@ -37,7 +37,7 @@ const Home = () => {
     //   ]);
     // }
 
-    fetch('http://192.168.43.152:5001/getUserList', {
+    fetch('https://bytivebackend-evt4.onrender.com//getUserList', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -53,35 +53,36 @@ const Home = () => {
         console.log('error is ', err);
         if (!list) {
           console.log(undefined === list, list);
-          setList([
-            {
-              name: 'Leanne Graham',
-              imgSrc:
-                'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-              email: 'Sincere@april.biz',
-              contactNo: '1-770-736-8031 x56442',
-              website: 'http://hildegard.org',
-            },
-            {
-              name: 'assad Graham',
-              imgSrc:
-                'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-              email: 'Sincere@april.biz',
-              contactNo: '1-770-736-8031 x56442',
-              website: 'http://hildegard.org',
-            },
-            {
-              name: 'khasa Graham',
-              imgSrc:
-                'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-              email: 'Sincere@april.biz',
-              contactNo: '1-770-736-8031 x56442',
-              website: 'http://hildegard.org',
-            },
-          ]);
+
+          // dummy data to test ui
+          // setList([
+          //   {
+          //     name: 'Leanne Graham',
+          //     imgSrc:
+          //       'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
+          //     email: 'Sincere@april.biz',
+          //     contactNo: '1-770-736-8031 x56442',
+          //     website: 'http://hildegard.org',
+          //   },
+          //   {
+          //     name: 'assad Graham',
+          //     imgSrc:
+          //       'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
+          //     email: 'Sincere@april.biz',
+          //     contactNo: '1-770-736-8031 x56442',
+          //     website: 'http://hildegard.org',
+          //   },
+          //   {
+          //     name: 'khasa Graham',
+          //     imgSrc:
+          //       'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
+          //     email: 'Sincere@april.biz',
+          //     contactNo: '1-770-736-8031 x56442',
+          //     website: 'http://hildegard.org',
+          //   },
+          // ]);
         }
       });
-    // console.log('kiya ki nhi', list);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
