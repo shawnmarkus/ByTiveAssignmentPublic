@@ -1,13 +1,40 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+  RefreshControl,
+} from 'react-native';
 
 import Home from './Screen/Home';
 
 function App() {
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  // const onRefresh = React.useCallback(() => {
+  //   setRefreshing(true);
+  //   setTimeout(() => {
+  //     setRefreshing(false);
+  //   }, 2000);
+  // }, []);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  };
+
+  useEffect(() => {}, [refreshing]);
+
   return (
     <SafeAreaView style={[Styles.safeViewTopWrapper]}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         contentContainerStyle={Styles.enclosingView}>
         <View
           // eslint-disable-next-line react-native/no-inline-styles
@@ -16,7 +43,7 @@ function App() {
             height: '100%',
             width: '95%',
           }}>
-          <Home />
+          {!refreshing ? <Home /> : null}
         </View>
       </ScrollView>
     </SafeAreaView>
