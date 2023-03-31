@@ -1,12 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Modal,
-  Pressable,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import FormComp from './FormComp';
 import {UserListContext} from './createContext';
 
@@ -78,6 +71,7 @@ const ButtonComp = props => {
               <ModelComp
                 show={modalVisible}
                 toggleModel={() => setModalVisible(!modalVisible)}
+                _id={props.selectedCard._id}
               />
             ) : null}
             {nameArrayOfButton[idx + 1] ? (
@@ -91,7 +85,7 @@ const ButtonComp = props => {
   );
 };
 
-function ModelComp({show, toggleModel}) {
+function ModelComp({show, toggleModel, _id}) {
   // listOfUser.indexOf()
 
   console.log('model');
@@ -105,19 +99,7 @@ function ModelComp({show, toggleModel}) {
       }}>
       <View style={Styles.centeredView}>
         <View style={Styles.modalView}>
-          <FormComp />
-          <View style={[Styles.modelButtonContainer]}>
-            <Pressable
-              style={[Styles.button, Styles.buttonClose]}
-              onPress={() => toggleModel()}>
-              <Text style={Styles.textStyle}>Close</Text>
-            </Pressable>
-            <Pressable
-              style={[Styles.button, Styles.buttonClose]}
-              onPress={() => toggleModel()}>
-              <Text style={Styles.textStyle}>Submit</Text>
-            </Pressable>
-          </View>
+          <FormComp _id={_id} toggleModel={() => toggleModel()} />
         </View>
       </View>
     </Modal>
@@ -165,25 +147,6 @@ const Styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 15,
     width: '90%',
-  },
-
-  modelButtonContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    right: 0,
-  },
-
-  button: {
-    borderRadius: 10,
-    padding: 10,
-    elevation: 2,
-  },
-
-  buttonClose: {
-    backgroundColor: '#2196F3',
-    marginLeft: 10,
-    width: 95,
   },
 
   textStyle: {

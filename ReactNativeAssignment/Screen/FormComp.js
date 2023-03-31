@@ -1,13 +1,34 @@
-import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import React, {useContext, useState} from 'react';
+import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
+import {UserListContext} from './createContext';
 
-const FormComp = () => {
+const FormComp = ({_id, toggleModel}) => {
+  const [list, setList] = useContext(UserListContext);
+
+  const [user, setUser] = useState(
+    list.filter(item => {
+      return item._id === _id;
+    })[0],
+  );
+
+  const onSubmit = () => {
+    console.log('kya hua bet');
+    let index = list.findIndex(x => x._id === _id);
+    let newList = [...list];
+    newList[index] = user;
+    setList(newList);
+    toggleModel();
+  };
+
   return (
     <View style={[Styles.formConatinerWrapper]}>
       <Text style={Styles.label}>Name</Text>
       <TextInput
         placeholder="enter Name"
         placeholderTextColor="#ababab"
+        value={user.name}
+        editable={true}
+        onChangeText={text => setUser({...user, name: text})}
         style={Styles.inputBox}
       />
 
@@ -16,6 +37,9 @@ const FormComp = () => {
         placeholder="enter email"
         placeholderTextColor="#ababab"
         style={Styles.inputBox}
+        value={user.email}
+        editable={true}
+        onChangeText={text => setUser({...user, email: text})}
       />
 
       <Text style={Styles.label}>Phone Number</Text>
@@ -23,6 +47,9 @@ const FormComp = () => {
         placeholder="enter Phone Number"
         placeholderTextColor="#ababab"
         style={Styles.inputBox}
+        value={user.contactNo}
+        editable={true}
+        onChangeText={text => setUser({...user, contactNo: text})}
       />
 
       <Text style={Styles.label}>website</Text>
@@ -30,7 +57,23 @@ const FormComp = () => {
         placeholder="enter website"
         placeholderTextColor="#ababab"
         style={Styles.inputBox}
+        value={user.website}
+        editable={true}
+        onChangeText={text => setUser({...user, website: text})}
       />
+
+      <View style={[Styles.modelButtonContainer]}>
+        <Pressable
+          style={[Styles.button, Styles.buttonClose]}
+          onPress={() => toggleModel()}>
+          <Text style={Styles.textStyle}>Close</Text>
+        </Pressable>
+        <Pressable
+          style={[Styles.button, Styles.buttonClose]}
+          onPress={onSubmit}>
+          <Text style={Styles.textStyle}>Submit</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
