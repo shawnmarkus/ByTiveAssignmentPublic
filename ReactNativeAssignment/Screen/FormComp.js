@@ -3,7 +3,11 @@ import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
 import {UserListContext} from './createContext';
 
 const FormComp = ({_id, toggleModel}) => {
-  const [list, setList] = useContext(UserListContext);
+  // const {userList, refreshThePage} = useContext(UserListContext);
+  // const [list, setList] = userList;
+  // const refresh = refreshThePage;
+
+  const [list, setList, refreshThePage] = useContext(UserListContext);
 
   const [user, setUser] = useState(
     list.filter(item => {
@@ -12,11 +16,27 @@ const FormComp = ({_id, toggleModel}) => {
   );
 
   const onSubmit = () => {
-    console.log('kya hua bet');
-    let index = list.findIndex(x => x._id === _id);
-    let newList = [...list];
-    newList[index] = user;
-    setList(newList);
+    fetch('http://192.168.43.152:5001/editUser', {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...user,
+      }),
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log('data that is updated', data.data);
+        refreshThePage();
+      })
+      .catch(err => {
+        console.log('error while update is: ', err);
+      });
+
     toggleModel();
   };
 
