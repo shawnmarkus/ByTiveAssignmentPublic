@@ -44,8 +44,7 @@ function App() {
           {!refreshing ? (
             <Home
               refreshThePage={() => {
-                console.log('kya hua koi touch nhi kiya hai kya');
-                // onRefresh();
+                onRefresh();
               }}
             />
           ) : null}
