@@ -4,40 +4,11 @@ import CardComp from './CardComp';
 import {UserListContext} from './createContext';
 import Loader from './Loader';
 
-const Home = () => {
+const Home = ({refreshThePage}) => {
   const [list, setList] = useState();
 
   useEffect(() => {
-    // if (list === undefined) {
-    //   setList([
-    //     {
-    //       name: 'Leanne Graham',
-    //       imgSrc:
-    //         'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-    //       email: 'Sincere@april.biz',
-    //       contactNo: '1-770-736-8031 x56442',
-    //       website: 'http://hildegard.org',
-    //     },
-    //     {
-    //       name: 'assad Graham',
-    //       imgSrc:
-    //         'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-    //       email: 'Sincere@april.biz',
-    //       contactNo: '1-770-736-8031 x56442',
-    //       website: 'http://hildegard.org',
-    //     },
-    //     {
-    //       name: 'khasa Graham',
-    //       imgSrc:
-    //         'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-    //       email: 'Sincere@april.biz',
-    //       contactNo: '1-770-736-8031 x56442',
-    //       website: 'http://hildegard.org',
-    //     },
-    //   ]);
-    // }
-
-    fetch('https://bytivebackend-evt4.onrender.com/getUserList', {
+    fetch('http://192.168.43.152:5001/getUserList', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -46,7 +17,7 @@ const Home = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('status dekh', data.retrievedData);
+        console.log('status dekh', data);
         setList([...data.retrievedData]);
       })
       .catch(err => {
@@ -90,7 +61,7 @@ const Home = () => {
   }, []);
   return (
     <View style={Styles.wrapperContainer}>
-      <UserListContext.Provider value={[list, setList]}>
+      <UserListContext.Provider value={[list, setList, refreshThePage]}>
         {list !== undefined ? (
           list.map((item, indx) => {
             return <CardComp userItem={item} key={indx} />;
