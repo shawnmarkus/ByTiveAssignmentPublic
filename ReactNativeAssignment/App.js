@@ -26,8 +26,6 @@ function App() {
     }, 2000);
   };
 
-  useEffect(() => {}, [refreshing]);
-
   return (
     <SafeAreaView style={[Styles.safeViewTopWrapper]}>
       <ScrollView
@@ -43,7 +41,14 @@ function App() {
             height: '100%',
             width: '95%',
           }}>
-          {!refreshing ? <Home /> : null}
+          {!refreshing ? (
+            <Home
+              refreshThePage={() => {
+                console.log('kya hua koi touch nhi kiya hai kya');
+                // onRefresh();
+              }}
+            />
+          ) : null}
         </View>
       </ScrollView>
     </SafeAreaView>
