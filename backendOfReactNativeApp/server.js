@@ -57,6 +57,54 @@ app.post("/createUserEntry", (req, res) => {
   }
 });
 
+// edit the user
+app.patch("/editUser", (req, res) => {
+  console.log("edit the user");
+  try {
+    // const { name, email, website, contactNo } = req.body;
+    const dataToUpdate = Array(req.body).filter((item) => {
+      return item !== "_id";
+    })[0];
+
+    // console.log();
+
+    console.log("data to update is :", dataToUpdate);
+    SocialCardModel.findOneAndUpdate(
+      { _id: req.body._id },
+      { ...dataToUpdate },
+      { new: true }
+    ).then((data) => {
+      console.log("Updated data is ", data);
+      res.status(200).json({
+        status: "DATA_UPDATION_SUCCESS",
+        data: data,
+      });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: "DATA_UPDATION_FAILED",
+    });
+  }
+});
+
+// delete the user
+app.delete("/deleteUser", (req, res) => {
+  try {
+    SocialCardModel.findOneAndDelete({ _id: req.body._id }).then((data) => {
+      res.status(200).json({
+        status: "DATA_DELETION_SUCCESS",
+        data: data,
+      });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: "DATA_DELETION_FAILED",
+    });
+  }
+});
+
 // port to listen
 const PORT = process.env.PORT | 5000;
 app.listen(PORT, (error) => {
