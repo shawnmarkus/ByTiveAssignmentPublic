@@ -26,7 +26,7 @@ const ButtonComp = props => {
   const deleteItemFromList = _id => {
     console.log('deleted corresponding item', _id);
 
-    fetch('http://192.168.43.152:5001/deleteUser', {
+    fetch('https://bytivebackend-evt4.onrender.com/deleteUser', {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',

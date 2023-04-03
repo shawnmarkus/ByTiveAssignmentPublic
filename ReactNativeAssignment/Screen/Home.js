@@ -8,7 +8,7 @@ const Home = ({refreshThePage}) => {
   const [list, setList] = useState();
 
   useEffect(() => {
-    fetch('http://192.168.43.152:5001/getUserList', {
+    fetch('https://bytivebackend-evt4.onrender.com/getUserList', {
       method: 'GET',
       headers: {
         Accept: 'application/json',

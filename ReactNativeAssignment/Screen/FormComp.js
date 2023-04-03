@@ -3,10 +3,6 @@ import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
 import {UserListContext} from './createContext';
 
 const FormComp = ({_id, toggleModel}) => {
-  // const {userList, refreshThePage} = useContext(UserListContext);
-  // const [list, setList] = userList;
-  // const refresh = refreshThePage;
-
   const [list, setList, refreshThePage] = useContext(UserListContext);
 
   const [user, setUser] = useState(
@@ -16,7 +12,7 @@ const FormComp = ({_id, toggleModel}) => {
   );
 
   const onSubmit = () => {
-    fetch('http://192.168.43.152:5001/editUser', {
+    fetch('https://bytivebackend-evt4.onrender.com/editUser', {
       method: 'PATCH',
       headers: {
         Accept: 'application/json',
