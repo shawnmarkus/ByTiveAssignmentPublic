@@ -92,6 +92,7 @@ app.patch("/editUser", (req, res) => {
 app.delete("/deleteUser", (req, res) => {
   try {
     SocialCardModel.findOneAndDelete({ _id: req.body._id }).then((data) => {
+      console.log(data);
       res.status(200).json({
         status: "DATA_DELETION_SUCCESS",
         data: data,
