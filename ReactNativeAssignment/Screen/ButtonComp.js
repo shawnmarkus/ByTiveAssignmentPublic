@@ -7,7 +7,7 @@ import {DeleteIcon, Heart, HeartSolid, Edit} from '../assets/exportFile';
 
 const ButtonComp = props => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [list, setList] = useContext(UserListContext);
+  const [list, setList, refreshThePage] = useContext(UserListContext);
 
   const [isLiked, setLiked] = useState(false);
 
@@ -25,13 +25,25 @@ const ButtonComp = props => {
 
   const deleteItemFromList = _id => {
     console.log('deleted corresponding item', _id);
-    const newList = list.filter(User => {
-      return User._id !== _id;
-    });
 
-    if (newList) {
-      setList(newList);
-    }
+    fetch('http://192.168.43.152:5001/deleteUser', {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        _id,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        refreshThePage();
+      })
+      .catch(err => {
+        console.log('the error at deletion', err);
+      });
   };
 
   const likeBtnfunc = () => {
@@ -52,10 +64,6 @@ const ButtonComp = props => {
         break;
     }
   };
-
-  useEffect(() => {
-    return;
-  }, [modalVisible]);
 
   return (
     <View style={Styles.flexContainer}>
