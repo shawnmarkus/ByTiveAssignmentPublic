@@ -61,10 +61,9 @@ app.post("/createUserEntry", (req, res) => {
 app.patch("/editUser", (req, res) => {
   console.log("edit the user");
   try {
-    // const { name, email, website, contactNo } = req.body;
-    const dataToUpdate = Array(req.body).filter((item) => {
-      return item !== "_id";
-    })[0];
+    const dataToUpdate = Object.fromEntries(
+      Object.entries(req.body).filter(([key, value]) => key !== "_id")
+    );
 
     // console.log();
 
