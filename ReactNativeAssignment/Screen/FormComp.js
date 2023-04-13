@@ -56,6 +56,7 @@ const FormComp = ({_id, toggleModel}) => {
         editable={true}
         onChangeText={text => setUser({...user, name: text})}
         style={Styles.inputBox}
+        keyboardType={'ascii-capable'}
       />
 
       <Text style={Styles.label}>Email</Text>
@@ -66,6 +67,7 @@ const FormComp = ({_id, toggleModel}) => {
         value={user.email}
         editable={true}
         onChangeText={text => setUser({...user, email: text})}
+        keyboardType={'email-address'}
       />
 
       <Text style={Styles.label}>Phone Number</Text>
@@ -76,6 +78,7 @@ const FormComp = ({_id, toggleModel}) => {
         value={user.contactNo}
         editable={true}
         onChangeText={text => setUser({...user, contactNo: text})}
+        keyboardType={'phone-pad'}
       />
 
       <Text style={Styles.label}>website</Text>
@@ -86,6 +89,7 @@ const FormComp = ({_id, toggleModel}) => {
         value={user.website}
         editable={true}
         onChangeText={text => setUser({...user, website: text})}
+        keyboardType={'url'}
       />
 
       <View style={[Styles.modelButtonContainer]}>
