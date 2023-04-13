@@ -7,6 +7,7 @@ import {
   RefreshControl,
   StatusBar,
 } from 'react-native';
+import RNBootSplash from 'react-native-bootsplash';
 
 import Home from './Screen/Home';
 
@@ -19,6 +20,10 @@ function App() {
   //     setRefreshing(false);
   //   }, 2000);
   // }, []);
+
+  useEffect(() => {
+    RNBootSplash.hide();
+  }, []);
 
   const onRefresh = () => {
     setRefreshing(true);
