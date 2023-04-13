@@ -36,7 +36,6 @@ function App() {
     <SafeAreaView style={[Styles.safeViewTopWrapper]}>
       <StatusBar barStyle={'dark-content'} backgroundColor={'#ffffff'} />
       <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
@@ -63,12 +62,11 @@ function App() {
 
 const Styles = StyleSheet.create({
   safeViewTopWrapper: {
-    height: '100%',
+    flex: 1,
     backgroundColor: 'white',
   },
   enclosingView: {
-    // overflow: 'scroll',
-    // minHeight: '100%',
+    minHeight: '100%',
     alignItems: 'center',
   },
 });

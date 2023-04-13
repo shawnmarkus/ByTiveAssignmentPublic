@@ -1,24 +1,17 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
 const Loader = () => {
   return (
     <View style={Styles.centeredView}>
-      <Text
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{
-          color: 'black',
-        }}>
-        Loading....
-      </Text>
+      <ActivityIndicator size={'large'} color={'black'} />
     </View>
   );
 };
 
 const Styles = StyleSheet.create({
   centeredView: {
-    height: '100%',
-    display: 'flex',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

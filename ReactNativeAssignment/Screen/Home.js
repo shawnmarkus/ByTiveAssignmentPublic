@@ -78,8 +78,8 @@ const Home = ({refreshThePage}) => {
 
 const Styles = StyleSheet.create({
   wrapperContainer: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 
