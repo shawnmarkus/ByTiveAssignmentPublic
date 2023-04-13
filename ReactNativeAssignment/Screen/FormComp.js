@@ -27,7 +27,17 @@ const FormComp = ({_id, toggleModel}) => {
       })
       .then(data => {
         console.log('data that is updated', data.data);
-        refreshThePage();
+        let tmpList = list;
+        let idx = 0;
+        for (; idx < list.length; idx += 1) {
+          if (list[idx]._id == user._id) {
+            break;
+          }
+        }
+        tmpList[idx] = user;
+        setList([]);
+        setList(tmpList);
+        //refreshThePage();
       })
       .catch(err => {
         console.log('error while update is: ', err);
