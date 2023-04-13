@@ -39,7 +39,9 @@ const ButtonComp = props => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        refreshThePage();
+        let newList = list.filter(item => _id !== item._id);
+        setList(newList);
+        //refreshThePage();
       })
       .catch(err => {
         console.log('the error at deletion', err);
