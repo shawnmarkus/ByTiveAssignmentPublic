@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   RefreshControl,
+  StatusBar,
 } from 'react-native';
 
 import Home from './Screen/Home';
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <SafeAreaView style={[Styles.safeViewTopWrapper]}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={'#ffffff'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         refreshControl={
