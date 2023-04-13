@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import CardComp from './CardComp';
 import {UserListContext} from './createContext';
 import Loader from './Loader';
