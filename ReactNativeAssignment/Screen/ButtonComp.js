@@ -7,7 +7,7 @@ import {DeleteIcon, Heart, HeartSolid, Edit} from '../assets/exportFile';
 
 const ButtonComp = props => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [list, setList, refreshThePage] = useContext(UserListContext);
+  const [list, setList, onRefresh] = useContext(UserListContext);
 
   // const [isLiked, setLiked] = useState(false);
   const [isLiked, setLiked] = useState(props.selectedCard.isLiked);

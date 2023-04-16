@@ -3,7 +3,7 @@ import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
 import {UserListContext} from './createContext';
 
 const FormComp = ({_id, toggleModel}) => {
-  const [list, setList, refreshThePage] = useContext(UserListContext);
+  const [list, setList, onRefresh] = useContext(UserListContext);
 
   const [user, setUser] = useState(
     list.filter(item => {

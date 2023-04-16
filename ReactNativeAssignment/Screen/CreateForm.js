@@ -30,18 +30,7 @@ const CreateForm = ({toggleModel}) => {
       })
       .then(data => {
         console.log('data entry made', data.data);
-        let tmpList = list;
-        tmpList.push(user);
-
-        // let idx = 0;
-        // for (; idx < list.length; idx += 1) {
-        //   if (list[idx]._id == user._id) {
-        //     break;
-        //   }
-        // }
-        // tmpList[idx] = user;
-        // setList([]);
-        setList(tmpList);
+        setList([...list, data.data]);
       })
       .catch(err => {
         console.log('error while update is: ', err);
