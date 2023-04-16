@@ -9,17 +9,20 @@ const ButtonComp = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [list, setList, refreshThePage] = useContext(UserListContext);
 
-  const [isLiked, setLiked] = useState(false);
+  // const [isLiked, setLiked] = useState(false);
+  const [isLiked, setLiked] = useState(props.selectedCard.isLiked);
 
   const ButtonSectionArrayList = {
-    likeBtn: !isLiked ? (
-      <Heart width={16} height={16} />
-    ) : (
+    likeBtn: isLiked ? (
       <HeartSolid width={16} height={16} />
+    ) : (
+      <Heart width={16} height={16} />
     ),
     edit: <Edit width={16} height={16} />,
     delete: <DeleteIcon width={16} height={16} />,
   };
+
+  // useEffect(() => {}, [isLiked]);
 
   const nameArrayOfButton = ['likeBtn', 'edit', 'delete'];
 
@@ -48,15 +51,26 @@ const ButtonComp = props => {
       });
   };
 
-  const likeBtnfunc = () => {
+  const likeBtnfunc = _id => {
     setLiked(!isLiked);
+    fetch('https://bytivebackend-evt4.onrender.com/likeit', {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        _id,
+        likeState: !isLiked,
+      }),
+    });
     console.log('liked it');
   };
 
   const onPressOfBtn = e => {
     switch (e) {
       case 'likeBtn':
-        likeBtnfunc();
+        likeBtnfunc(props.selectedCard._id);
         break;
       case 'delete':
         deleteItemFromList(props.selectedCard._id);
