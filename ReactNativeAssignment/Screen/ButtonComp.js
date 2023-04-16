@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {View, StyleSheet, TouchableOpacity, Modal} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Modal, Alert} from 'react-native';
 import FormComp from './FormComp';
 import {UserListContext} from './createContext';
 
@@ -25,6 +25,33 @@ const ButtonComp = props => {
   // useEffect(() => {}, [isLiked]);
 
   const nameArrayOfButton = ['likeBtn', 'edit', 'delete'];
+
+  const showAlert = () =>
+    Alert.alert(
+      'Waring Deletion',
+      'Want to proceed to delete',
+      [
+        {
+          text: 'Cancel',
+          // onPress: () => Alert.alert('Cancel Pressed'),
+          style: 'cancel',
+        },
+
+        {
+          text: 'Proceed',
+          onPress: () => {
+            deleteItemFromList(props.selectedCard._id);
+          },
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            'This alert was dismissed by tapping outside of the alert dialog.',
+          ),
+      },
+    );
 
   const deleteItemFromList = _id => {
     console.log('deleted corresponding item', _id);
@@ -73,7 +100,8 @@ const ButtonComp = props => {
         likeBtnfunc(props.selectedCard._id);
         break;
       case 'delete':
-        deleteItemFromList(props.selectedCard._id);
+        // deleteItemFromList(props.selectedCard._id);
+        showAlert();
         break;
       case 'edit':
         setModalVisible(!modalVisible);
