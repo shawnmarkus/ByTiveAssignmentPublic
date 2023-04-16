@@ -1,13 +1,13 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import CardComp from './CardComp';
 import {UserListContext} from './createContext';
 import Loader from './Loader';
 
-const Home = ({refreshThePage}) => {
+const Home = () => {
   // const [list, setList] = useState();
 
-  const [list, setList, onRefresh] = useContext(UserListContext);
+  const [list, setList] = useContext(UserListContext);
 
   // useEffect(() => {
   //   fetch('https://bytivebackend-evt4.onrender.com/getUserList', {
@@ -30,6 +30,7 @@ const Home = ({refreshThePage}) => {
   //     });
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
+
   return (
     <View style={Styles.wrapperContainer}>
       {list !== undefined ? (

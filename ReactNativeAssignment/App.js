@@ -4,7 +4,6 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  RefreshControl,
   StatusBar,
   TouchableOpacity,
   Modal,
@@ -17,8 +16,6 @@ import CreateForm from './Screen/CreateForm';
 import {UserListContext} from './Screen/createContext';
 
 function ModelComp({show, toggleModel}) {
-  // listOfUser.indexOf()
-
   console.log('model');
   return (
     <Modal
@@ -52,9 +49,6 @@ function App() {
     }, 2000);
   };
 
-  // useEffect(() => {
-  //   console.log('page got refresh ');
-  // }, [refreshing]);
   const [list, setList] = React.useState();
 
   useEffect(() => {
@@ -67,7 +61,6 @@ function App() {
     })
       .then(response => response.json())
       .then(data => {
-        // console.log('status dekh', data);
         setList([...data.retrievedData]);
       })
       .catch(err => {
@@ -89,11 +82,7 @@ function App() {
     <SafeAreaView style={[Styles.safeViewTopWrapper]}>
       <StatusBar barStyle={'dark-content'} backgroundColor={'#ffffff'} />
       <UserListContext.Provider value={[list, setList, onRefresh]}>
-        <ScrollView
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-          contentContainerStyle={Styles.enclosingView}>
+        <ScrollView contentContainerStyle={Styles.enclosingView}>
           <View
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
@@ -101,13 +90,7 @@ function App() {
               height: '100%',
               width: '95%',
             }}>
-            {!refreshing ? (
-              <Home
-                refreshThePage={() => {
-                  onRefresh();
-                }}
-              />
-            ) : null}
+            {!refreshing ? <Home /> : null}
           </View>
         </ScrollView>
         <TouchableOpacity
