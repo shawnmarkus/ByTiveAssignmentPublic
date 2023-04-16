@@ -105,6 +105,36 @@ app.delete("/deleteUser", (req, res) => {
   }
 });
 
+// like the user
+/*
+ * the body must contain following:
+ * _id
+ * likeState
+ */
+app.patch("/likeit", (req, res) => {
+  try {
+    SocialCardModel.findOneAndUpdate(
+      { _id: req.body._id },
+      {
+        isLiked: req.body.likeState,
+      },
+      { new: true }
+    ).then((data) => {
+      console.log("the retured data is: ", data);
+      res.status(200).json({
+        status: "SUCCESS",
+        data,
+      });
+    });
+  } catch (err) {
+    // console.log("the error occured is: ", err);
+    res.status(500).json({
+      status: "FAILED",
+    });
+    throw Error(`the error that is been thrown ${err}`);
+  }
+});
+
 // port to listen
 const PORT = process.env.PORT | 5000;
 app.listen(PORT, (error) => {
