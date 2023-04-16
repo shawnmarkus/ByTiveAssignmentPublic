@@ -24,37 +24,6 @@ const Home = ({refreshThePage}) => {
         console.log('error is ', err);
         if (!list) {
           console.log(undefined === list, list);
-
-          // dummy data to test ui
-          // setList([
-          //   {
-          //     name: 'Leanne Graham',
-          //     imgSrc:
-          //       'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-          //     email: 'Sincere@april.biz',
-          //     contactNo: '1-770-736-8031 x56442',
-          //     website: 'http://hildegard.org',
-          //     _id: 1,
-          //   },
-          //   {
-          //     name: 'assad Graham',
-          //     imgSrc:
-          //       'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-          //     email: 'Sincere@april.biz',
-          //     contactNo: '1-770-736-8031 x56442',
-          //     website: 'http://hildegard.org',
-          //     _id: 2,
-          //   },
-          //   {
-          //     name: 'khasa Graham',
-          //     imgSrc:
-          //       'https://avatars.dicebear.com/v2/avataaars/Bret.svg?options[mood][]=happy',
-          //     email: 'Sincere@april.biz',
-          //     contactNo: '1-770-736-8031 x56442',
-          //     website: 'http://hildegard.org',
-          //     _id: 3,
-          //   },
-          // ]);
         }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +38,6 @@ const Home = ({refreshThePage}) => {
         ) : (
           <Loader />
         )}
-
         {/* <Text style={{color: 'black'}}>{JSON.stringify(list)}</Text> */}
       </UserListContext.Provider>
     </View>
