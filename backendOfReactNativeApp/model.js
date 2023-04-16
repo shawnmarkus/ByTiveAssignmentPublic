@@ -6,6 +6,10 @@ const SocialCardSchema = mongoose.Schema({
   contactNo: String,
   website: String,
   name: String,
+  isLiked: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const SocialCardModel = mongoose.model(
