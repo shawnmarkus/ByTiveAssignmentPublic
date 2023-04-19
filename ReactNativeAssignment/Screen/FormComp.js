@@ -183,7 +183,7 @@ const Styles = StyleSheet.create({
   buttonClose: {
     backgroundColor: '#2196F3',
     marginLeft: 10,
-    width: 70,
+    width: 100,
   },
 
   textStyle: {
