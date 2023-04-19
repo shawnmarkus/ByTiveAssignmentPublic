@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {SvgUri} from 'react-native-svg';
+import {SvgCssUri, SvgUri} from 'react-native-svg';
 import ButtonComp from './ButtonComp';
 import {Email, Call, Enternet} from '../assets/exportFile';
 
@@ -19,12 +19,26 @@ const CardComp = ({userItem}) => {
     4: 'website',
   };
 
+  const onError = e => {
+    console.log(e.message);
+    // setLoading(false);
+  };
+  const onLoad = () => {
+    console.log('Svg loaded!');
+    // setLoading(false);r
+  };
+
   return (
     <View style={Style.wraperContainer}>
       {userItem !== undefined ? (
         <>
           <View style={[Style.image]}>
-            <SvgUri uri={userItem.imgSrc} width={'100%'} height={'100%'} />
+            <SvgUri
+              uri={userItem.imgSrc}
+              width={'100%'}
+              height={'100%'}
+              onError={onError}
+            />
           </View>
 
           <View style={Style.detail_container}>
@@ -60,7 +74,6 @@ const Style = StyleSheet.create({
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOpacity: 0.25,
-    shadowOffset: {width: 2, height: 10},
     elevation: 8,
   },
 

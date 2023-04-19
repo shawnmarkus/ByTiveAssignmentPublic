@@ -126,6 +126,7 @@ const ButtonComp = props => {
                 _id={props.selectedCard._id}
               />
             ) : null}
+
             {nameArrayOfButton[idx + 1] ? (
               // eslint-disable-next-line react/self-closing-comp
               <View style={Styles.verticleLine}></View>
@@ -138,8 +139,6 @@ const ButtonComp = props => {
 };
 
 function ModelComp({show, toggleModel, _id}) {
-  // listOfUser.indexOf()
-
   console.log('model');
   return (
     <Modal

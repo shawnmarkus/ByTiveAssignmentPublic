@@ -39,7 +39,7 @@ function App() {
   const [modalVisible, setModalVisible] = React.useState(false);
 
   useEffect(() => {
-    RNBootSplash.hide();
+    RNBootSplash.hide({fade: true, duration: 500});
   }, []);
 
   const onRefresh = () => {
